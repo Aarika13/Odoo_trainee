@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_student_subject_tree" model="ir.ui.view">
+        <field name="name">student.subject.tree</field>
+        <field name="model">student.subject</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="subject"/>
+<!--                <field name="color" widget="color_picker"/>-->
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_student_subject_form" model="ir.ui.view">
+        <field name="name">student.subject.form</field>
+        <field name="model">student.subject</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="subject"/>
+<!--                            <field name="color" widget="color_picker"/>-->
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_student_subject_search" model="ir.ui.view">
+        <field name="name">student.subject.search</field>
+        <field name="model">student.subject</field>
+        <field name="arch" type="xml">
+            <search>
+
+            </search>
+        </field>
+    </record>
+
+    <record id="action_student_subject" model="ir.actions.act_window">
+        <field name="name">Student subject</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.subject</field>
+        <field name="domain">[]</field>
+        <field name="view_mode">tree,form,search</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem id="menu_student_subject"
+              name="Subject"
+              action="action_student_subject"
+              parent="menu_student_data_master"
+              sequence="20"/>
+
+
+</odoo>

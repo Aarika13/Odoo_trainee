@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_test_wizard_form" model="ir.ui.view">
+        <field name="name">test.wizard.form</field>
+        <field name="model">test.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="subject_ids"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_create" string="Create" type="object" class="oe_highlight" />
+                    <button name="action_update" string="Update" type="object" class="oe-highlight" />
+<!--                    <button name="action_delete" string="Delete" type="object" class="oe-highlight" />-->
+<!--                    <button name="action_remove" string="Remove" type="object" class="oe-highlight" />-->
+<!--                    <button name="action_name_change" string="Change" type="object" class="oe-highlight"/>-->
+<!--                    <button name="action_unlink_all" string="Unlink" type="object" class="oe-highlight" />-->
+<!--                    <button name="action_replace" string="Replace" type="object" class="oe-highlight"/>-->
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_test_wizard" model="ir.actions.act_window">
+        <field name="name">Test Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">test.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_student_holiday_calendar" model="ir.ui.view">
+        <field name="name">student.holiday.calendar</field>
+        <field name="model">student.holiday</field>
+        <field name="arch" type="xml">
+            <calendar date_start="holiday_date" string="Holidays" mode="month" event_open_popup="true"
+                      quick_add="false">
+                <field name="name_holiday"/>
+                <!--                <field name="user_ids" widget="many2many_avatar_user"/>mode="month" color="user_ids" event_limit="5"
+                                      hide_time="true" js_class="project_calendar"-->
+                <!--                <field name="partner_id" attrs="{'invisible': [('partner_id', '=', False)]}"/>-->
+                <!--                <field name="priority" widget="priority"/>-->
+                <!--                <field name="date_deadline"/>-->
+                <!--                <field name="tag_ids" widget="many2many_tags" attrs="{'invisible': [('tag_ids', '=', [])]}"/>-->
+                <!--                <field name="stage_id"/>-->
+                <!--                <field name="kanban_state"/>-->
+            </calendar>
+        </field>
+    </record>
+
+    <record id="view_student_holiday_tree" model="ir.ui.view">
+        <field name="name">student.holiday.tree</field>
+        <field name="model">student.holiday</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name_holiday"/>
+                <field name="holiday_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_student_holiday_form" model="ir.ui.view">
+        <field name="name">student.holiday.form</field>
+        <field name="model">student.holiday</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name_holiday"/>
+                            <field name="holiday_date"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_student_holiday" model="ir.actions.act_window">
+        <field name="name">Student holiday</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.holiday</field>
+        <field name="domain">[]</field>
+        <field name="view_mode">calendar,tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem id="menu_student_holiday_master" name="holidays" parent="menu_student_data_root" sequence="10">
+        <menuitem id="menu_student_holiday" name="Holiday" action="action_student_holiday"/>
+        <menuitem id="menu_cancel_student_data" name="Cancellation" action="action_cancel_student_data"/>
+    </menuitem>
+
+
+</odoo>

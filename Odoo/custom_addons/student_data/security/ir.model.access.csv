@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_student_data,access_student_data,model_student_data,,1,1,1,1
+access_student_standard,access_student_standard,model_student_standard,,1,1,1,1
+access_student_subject,access_student_subject,model_student_subject,,1,1,1,1
+access_student_personal,access_student_personal,model_student_personal,,1,1,1,1
+access_student_holiday,access_student_holiday,model_student_holiday,,1,1,1,1
+access_cancel_student_data_wizard,access_cancel_student_data_wizard,model_cancel_student_data_wizard,,1,1,1,1
+access_test_wizard,access_test_wizard,model_test_wizard,,1,1,1,1
+access_student_teacher,access_student_teacher,model_student_teacher,,1,1,1,1

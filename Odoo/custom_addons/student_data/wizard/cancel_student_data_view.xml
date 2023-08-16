@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cancel_student_data_form" model="ir.ui.view">
+        <field name="name">cancel.student.data.wizard.form</field>
+        <field name="model">cancel.student.data.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="student_id"/>
+                        <field name="reason"/>
+                    </group>
+                    <group>
+                        <field name="date_cancel"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_cancel" string="Cancel Data" type="object" class="btn-primary"
+                            data-hotkey="q"/>
+                    <button string="Discard" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_cancel_student_data" model="ir.actions.act_window">
+        <field name="name">Cancel Student Data Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cancel.student.data.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

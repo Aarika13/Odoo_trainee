@@ -1,0 +1,27 @@
+{
+    'name': 'School Management',
+    'version': '15.0.0',
+    'category': 'School',
+    'summary': 'School Management System',
+    'description': """School management system""",
+    'depends': ['base','sale'],
+    'data': [
+        'security/ir.model.access.csv',
+        'wizard/cancel_student_data_view.xml',
+        'wizard/test_wizard_view.xml',
+        'views/menu.xml',
+        'views/student_data_view.xml',
+        'views/standard_view.xml',
+        'views/subject_view.xml',
+        'views/personal_view.xml',
+        'views/holiday_view.xml',
+        'views/sale_order_view.xml',
+        'views/res_config_settings_view.xml',
+        'views/teacher_data_view.xml',
+    ],
+    'demo': [],
+    'application': True,
+    'installable': True,
+    'auto_install': False,
+
+}

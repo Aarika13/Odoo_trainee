@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_student_data_tree" model="ir.ui.view">
+        <field name="name">student.data.tree</field>
+        <field name="model">student.data</field>
+        <field name="arch" type="xml">
+            <tree>
+                <header>
+                    <button name="action_pass" string="Pass" type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '=', 'fail')]}"/>
+                </header>
+                <field name="name"/>
+                <field name="birth_date"/>
+                <field name="age" sum="Total Age"/>
+                <field name="marks1" avg="Average Marks1"/>
+                <field name="marks2" avg="Average Marks2"/>
+                <field name="marks3" avg="Average Marks3"/>
+                <field name="total"/>
+                <field name="progress" widget="progressbar"/>
+                <field name="state"
+                       decoration-danger="state == 'fail'"
+                       decoration-success="state == 'pass'" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_student_data_form" model="ir.ui.view">
+        <field name="name">student.data.form</field>
+        <field name="model">student.data</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_pass" string="Pass" type="object" class="on_highlight" state="pass"/>
+                    <button name="action_fail" string="Fail" type="object" class="on_highlight" state="fail"/>
+                    <button name="action_share_whatsapp" string="Share In Whatsapp" class="oe-highlight" type="object"
+                            icon="fa-whatsapp"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pass,fail" options="{'clickable':1}"/>
+                    <button name="action_test_wizard" string="Wizard" type="object" class="oe_highlight"/>
+<!--                    <button name="%(student_data.action_test_wizard)d" string="Wizard 2" type="action" class="oe_highlight"/>-->
+                </header>
+                <sheet>
+                    <div class="alert alert-info text-center o_from_header" role="alert"
+                         attrs="{'invisible':[('is_birthday','=',False)]}">
+                        <a class="close" data-dismiss="alert" href="#">x</a>
+                        <div>
+                            <strong>Today is Birthday</strong>
+                        </div>
+                        <div>
+                            Wish
+                            <field name="name" readonly="1"/>
+                        </div>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="name" required="True"/>
+                            <field name="birth_date" required="True"/>
+                            <field name="age"/>
+                            <field name="teacher_id" widget="many2one_avatar_user"/>
+                            <field name="progress" widget="gauge"
+                                   options="{'style':'width: 100px; height:100px;'}"/>
+                            <field name="is_birthday"/>
+                            <field name="description" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="marks1"/>
+                            <field name="marks2"/>
+                            <field name="marks3"/>
+                            <field name="total"/>
+<!--                            <field name="subject_ids" widget="many2many_tags" options="{'color_field':'color'}"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="extra_details" string="Other">
+                            <tree editable="1">
+                                <field name="subject_ids" readonly="1" nolabel="1"/>
+                            </tree>
+                        </page>
+                        <page name="information" string="Information">
+                            <field name="details_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_student_data_search" model="ir.ui.view">
+        <field name="name">student.data.search</field>
+        <field name="model">student.data</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="age"/>
+                <filter name="state_filter" string="Pass" domain="[('state', '=', 'pass')]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Pass" name="group_by_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_student_data" model="ir.actions.act_window">
+        <field name="name">Student Data</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.data</field>
+        <field name="domain">[('state', '=', 'pass')]</field>
+        <field name="view_mode">tree,form,search,kanban</field>
+        <field name="context">{'search_default_state_filter':1}</field>
+    </record>
+
+
+    <menuitem id="menu_student_data"
+              name="Student Data"
+              parent="menu_student_data_master"
+              action="action_student_data"
+              sequence="0"/>
+
+</odoo>
